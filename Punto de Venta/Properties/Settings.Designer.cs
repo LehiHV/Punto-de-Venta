@@ -33,5 +33,16 @@ namespace Punto_de_Venta.Properties {
                 return ((string)(this["Mariscos_PepeConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\bin\\x64\\Debug\\Maris" +
+            "cos_Pepe.accdb")]
+        public string Mariscos_PepeConnectionString1 {
+            get {
+                return ((string)(this["Mariscos_PepeConnectionString1"]));
+            }
+        }
     }
 }

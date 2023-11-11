@@ -11,15 +11,21 @@ using System.Data.OleDb;
 
 namespace Punto_de_Venta
 {
-    public partial class frm_Login_Admin : Form
+    public partial class frm_Login_Usuario : Form
     {
         OleDbConnection conexion = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source =|DataDirectory|Mariscos_Pepe.accdb");
-        public frm_Login_Admin()
+        public frm_Login_Usuario()
         {
             InitializeComponent();
         }
 
-        private void frm_Login_Admin_FormClosing(object sender, FormClosingEventArgs e)
+        private void txt_contra_TextChanged(object sender, EventArgs e)
+        {
+            txt_contra.PasswordChar = '*';
+            txt_contra.MaxLength = 8;
+        }
+
+        private void Form3_FormClosing(object sender, FormClosingEventArgs e)
         {
             switch (e.CloseReason)
             {
@@ -36,16 +42,6 @@ namespace Punto_de_Venta
             this.Hide();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            txt_contra.PasswordChar = '*';
-            txt_contra.MaxLength=8;
-        }
-
-        private void frm_Login_Admin_Load(object sender, EventArgs e)
-        {
-        }
-
         private void btn_acceder_Click(object sender, EventArgs e)
         {
             try
@@ -57,8 +53,8 @@ namespace Punto_de_Venta
                 MessageBox.Show("Error por: " + a.ToString(), "Conexion");
             }
 
-            string con = "Select Usuario, Contraseña From Admin Where Usuario='" + txt_usuario.Text + "' and Contraseña='" + txt_contra.Text+"'";
-            OleDbCommand comand = new OleDbCommand(con,conexion);
+            string con = "Select Usuario, Contraseña From Meseros Where Usuario='" + txt_usuario.Text + "' and Contraseña='" + txt_contra.Text + "'";
+            OleDbCommand comand = new OleDbCommand(con, conexion);
             OleDbDataReader leedb;
             leedb = comand.ExecuteReader();
 
@@ -66,20 +62,16 @@ namespace Punto_de_Venta
             Existe = leedb.HasRows;
             if (Existe)
             {
-                frm_Edicion_Datos ed= new frm_Edicion_Datos();
-                ed.Show();
+                frm_Punto_Venta pv = new frm_Punto_Venta();
+                pv.Show();
                 this.Hide();
             }
-            else{
-                MessageBox.Show("Datos Incorrectos, Porfavor Verifique", "Conexion Fallida");
-            }
-
-                conexion.Close();
+            else { MessageBox.Show("Datos Incorrectos, Porfavor Verifique","Conexion Fallida"); }
+            conexion.Close();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void frm_Login_Usuario_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

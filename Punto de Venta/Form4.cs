@@ -71,14 +71,14 @@ namespace Punto_de_Venta
             public static bool pedido;
 
             public static DataGridView m = new DataGridView();
-            
+
             // otras variables estáticas
         }
 
         decimal[] Tt = new decimal[20];
         OleDbConnection conexion = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source =|DataDirectory|Mariscos_Pepe.accdb");
         public frm_Punto_Venta()
-        {   
+        {
             InitializeComponent();
         }
 
@@ -94,7 +94,7 @@ namespace Punto_de_Venta
 
         private void btn_atras_Click(object sender, EventArgs e)
         {
-            if (mesa1.Count() != 0 || mesa2.Count() != 0 || mesa3.Count() != 0 || mesa4.Count() != 0 || mesa5.Count() != 0 || mesa6.Count() != 0 || mesa7.Count() != 0 || mesa8.Count() != 0 || mesa9.Count() != 0 || mesa10.Count() != 0 || 
+            if (mesa1.Count() != 0 || mesa2.Count() != 0 || mesa3.Count() != 0 || mesa4.Count() != 0 || mesa5.Count() != 0 || mesa6.Count() != 0 || mesa7.Count() != 0 || mesa8.Count() != 0 || mesa9.Count() != 0 || mesa10.Count() != 0 ||
                 mesa11.Count() != 0 || mesa12.Count() != 0 || mesa13.Count() != 0 || mesa14.Count() != 0 || mesa15.Count() != 0 || mesa16.Count() != 0 || mesa17.Count() != 0 || mesa18.Count() != 0 || mesa19.Count() != 0 || mesa20.Count() != 0)
             {
                 MessageBox.Show("Antes de poder Salir no deben quedar Cuentas Pendientes en el Sistema", "Salir del Punto de Venta");
@@ -418,7 +418,7 @@ namespace Punto_de_Venta
                     break;
             }
         }
-        
+
         //Codigo para la configuracion del Scrollbar Vertical de los TabPages
         private void ScrollBarConfig(TabPage page)
         {
@@ -427,14 +427,14 @@ namespace Punto_de_Venta
             page.VerticalScroll.Visible = false;
             page.AutoScroll = true;
         }
-        
+
         //Configuracion auxiliar para la vizualizacion de los componentes
         private void TextANDNumericConfig(System.Windows.Forms.TextBox textbox, NumericUpDown nud)
         {
-                textbox.Visible = true;
-                textbox.Visible = false;
-                nud.Visible = true;
-                nud.Visible = false;
+            textbox.Visible = true;
+            textbox.Visible = false;
+            nud.Visible = true;
+            nud.Visible = false;
         }
         private void SortComponents(char chosenLetter, int position, int limit)
         {
@@ -473,7 +473,7 @@ namespace Punto_de_Venta
             grb_E_S_12.Visible = false;
             grb_E_S_13.Visible = false;
 
-           //Casos Especiales de Fuertes
+            //Casos Especiales de Fuertes
             grb_F_34_F.Visible = true;
             grb_F_34_F.Visible = false;
             grb_F_41_1.Visible = true;
@@ -550,38 +550,38 @@ namespace Punto_de_Venta
         }
 
         //Identificar Id's con Checkboxs
-        private void UpdateCheckBoxText(Char category,int start, int end)
+        private void UpdateCheckBoxText(Char category, int start, int end)
         {
-                switch (category)
-                {
-                    case 'E':
-                        for (int id = start; id <= end; id++)
+            switch (category)
+            {
+                case 'E':
+                    for (int id = start; id <= end; id++)
+                    {
+                        CheckBox checkBox = (CheckBox)this.Controls.Find($"chk_{category}_{id}", true).FirstOrDefault();
+
+                        if (checkBox != null)
                         {
-                            CheckBox checkBox = (CheckBox)this.Controls.Find($"chk_{category}_{id}", true).FirstOrDefault();
+                            string nombre = Convert.ToString((new OleDbCommand($"Select Nombre FROM Entradas WHERE Id={id}", conexion)).ExecuteScalar());
+                            string cantidad = Convert.ToString((new OleDbCommand($"Select Cantidad FROM Entradas WHERE Id={id}", conexion)).ExecuteScalar());
 
-                            if (checkBox != null)
-                            {
-                                string nombre = Convert.ToString((new OleDbCommand($"Select Nombre FROM Entradas WHERE Id={id}", conexion)).ExecuteScalar());
-                                string cantidad = Convert.ToString((new OleDbCommand($"Select Cantidad FROM Entradas WHERE Id={id}", conexion)).ExecuteScalar());
-
-                                checkBox.Text = string.IsNullOrEmpty(cantidad) ? nombre : $"{nombre} ({cantidad})";
-                            }
+                            checkBox.Text = string.IsNullOrEmpty(cantidad) ? nombre : $"{nombre} ({cantidad})";
                         }
-                        break;
-                    case 'F':
-                        for (int id = start; id <= end; id++)
+                    }
+                    break;
+                case 'F':
+                    for (int id = start; id <= end; id++)
+                    {
+                        CheckBox checkBox = (CheckBox)this.Controls.Find($"chk_{category}_{id}", true).FirstOrDefault();
+
+                        if (checkBox != null)
                         {
-                            CheckBox checkBox = (CheckBox)this.Controls.Find($"chk_{category}_{id}", true).FirstOrDefault();
+                            string nombre = Convert.ToString((new OleDbCommand($"Select Nombre FROM Fuertes WHERE Id={id}", conexion)).ExecuteScalar());
+                            string cantidad = Convert.ToString((new OleDbCommand($"Select Cantidad FROM Fuertes WHERE Id={id}", conexion)).ExecuteScalar());
 
-                            if (checkBox != null)
-                            {
-                                string nombre = Convert.ToString((new OleDbCommand($"Select Nombre FROM Fuertes WHERE Id={id}", conexion)).ExecuteScalar());
-                                string cantidad = Convert.ToString((new OleDbCommand($"Select Cantidad FROM Fuertes WHERE Id={id}", conexion)).ExecuteScalar());
-
-                                checkBox.Text = string.IsNullOrEmpty(cantidad) ? nombre : $"{nombre} ({cantidad})";
-                            }
+                            checkBox.Text = string.IsNullOrEmpty(cantidad) ? nombre : $"{nombre} ({cantidad})";
                         }
-                        break;
+                    }
+                    break;
                 case 'L':
                     for (int id = start; id <= end; id++)
                     {
@@ -609,7 +609,7 @@ namespace Punto_de_Venta
                             checkBox.Text = string.IsNullOrEmpty(cantidad) ? nombre : $"{nombre} ({cantidad})";
                         }
                     }
-                        break;
+                    break;
                 case 'I':
                     for (int id = start; id <= end; id++)
                     {
@@ -637,7 +637,7 @@ namespace Punto_de_Venta
                             checkBox.Text = string.IsNullOrEmpty(cantidad) ? nombre : $"{nombre} ({cantidad})";
                         }
                     }
-                        break;
+                    break;
                 case 'P':
                     for (int id = start; id <= end; id++)
                     {
@@ -651,7 +651,7 @@ namespace Punto_de_Venta
                             checkBox.Text = string.IsNullOrEmpty(cantidad) ? nombre : $"{nombre} ({cantidad})";
                         }
                     }
-                        break;
+                    break;
                 case 'C':
                     for (int id = start; id <= end; id++)
                     {
@@ -666,15 +666,15 @@ namespace Punto_de_Venta
                         }
                     }
                     break;
-                    default:
-                        MessageBox.Show("Error", "Error porfavor selecciona una opcion posible", MessageBoxButtons.OK);
-                        break;
-                }
+                default:
+                    MessageBox.Show("Error", "Error porfavor selecciona una opcion posible", MessageBoxButtons.OK);
+                    break;
+            }
         }
 
         private void frm_Punto_Venta_Load(object sender, EventArgs e)
         {
-            
+
             //Permitir el VerticalScrollBar en las paginas
             ScrollBarConfig(tbp_Entradas);
             ScrollBarConfig(tbp_Fuertes);
@@ -705,8 +705,8 @@ namespace Punto_de_Venta
             UpdateCheckBoxText('C', 1, 7);
             UpdateCheckBoxText('O', 1, 9);
             btn_eliminar.Enabled = false;
-            OleDbCommand comand = new OleDbCommand("Select Caja FROM Facturas WHERE Fecha='" + Convert.ToString(DateTime.Now).Substring(0, 10)+"'", conexion);
-            
+            OleDbCommand comand = new OleDbCommand("Select Caja FROM Facturas WHERE Fecha='" + Convert.ToString(DateTime.Now).Substring(0, 10) + "'", conexion);
+
             //Activar las ofertas por dia automaticamente
             switch (Convert.ToString(DateTime.Today.DayOfWeek))
             {
@@ -740,12 +740,12 @@ namespace Punto_de_Venta
                     chk_O_8.Visible = true;
                     chk_O_9.Visible = true;
                     break;
-                default: 
-                    
+                default:
+
                     break;
             }
 
-            
+
 
             cmb_Mesas.SelectedIndex = 0;
         }
@@ -1503,7 +1503,7 @@ namespace Punto_de_Venta
         }
         private void chk_F_29_CheckedChanged(object sender, EventArgs e)
         {
-            if(chk_F_10.Checked) 
+            if (chk_F_10.Checked)
             {
                 txt_F_10.Visible = true;
                 nud_F_10.Visible = true;
@@ -3040,7 +3040,7 @@ namespace Punto_de_Venta
         }
 
 
-        decimal Total= 0;
+        decimal Total = 0;
         private void tbc_punto_venta_SelectedIndexChanged(object sender, EventArgs e)
         {
             SpecialComponents();
@@ -3184,11 +3184,11 @@ namespace Punto_de_Venta
             ListaDeRadioButtons.Add(new List<RadioButton> { rdb_I_44_1, rdb_I_44_2, rdb_I_44_3 });
 
             //Agregar Entradas
-            ManejarCheckBox(txt_E_1,chk_E_1,nud_E_1,1,null,null);
-            ManejarCheckBox(txt_E_2, chk_E_2, nud_E_2, 2,null, null);
-            ManejarCheckBox(txt_E_3, chk_E_3, nud_E_3, 3,null, null);
-            ManejarCheckBox(txt_E_4, chk_E_4, nud_E_4, 4,null, null);
-            ManejarCheckBox(txt_E_5, chk_E_5, nud_E_5, 5,null, null);
+            ManejarCheckBox(txt_E_1, chk_E_1, nud_E_1, 1, null, null);
+            ManejarCheckBox(txt_E_2, chk_E_2, nud_E_2, 2, null, null);
+            ManejarCheckBox(txt_E_3, chk_E_3, nud_E_3, 3, null, null);
+            ManejarCheckBox(txt_E_4, chk_E_4, nud_E_4, 4, null, null);
+            ManejarCheckBox(txt_E_5, chk_E_5, nud_E_5, 5, null, null);
             ManejarCheckBox(txt_E_6, chk_E_6, nud_E_6, 6, null, null);
             ManejarCheckBox(txt_E_7, chk_E_7, nud_E_7, 7, null, null);
             ManejarCheckBox(txt_E_8, chk_E_8, nud_E_8, 8, null, null);
@@ -3240,7 +3240,7 @@ namespace Punto_de_Venta
                     comanda.Add(nud_F_16.Value + "x " + chk_F_16.Text + "(" + txt_F_16.Text + ")");
                 OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=35", conexion);
                 comida.Add(nud_F_16.Value + "x " + chk_F_16.Text + ":" + (Convert.ToDecimal(comand.ExecuteScalar()) * precio) * Convert.ToInt32(nud_F_16.Value));
-                Total = Convert.ToDecimal ((Convert.ToDecimal(comand.ExecuteScalar())*precio) * Convert.ToInt32(nud_F_16.Value)) + Total;
+                Total = Convert.ToDecimal((Convert.ToDecimal(comand.ExecuteScalar()) * precio) * Convert.ToInt32(nud_F_16.Value)) + Total;
                 chk_F_16.Checked = false;
             }
             ManejarCheckBox(txt_F_17, chk_F_17, nud_F_17, 36, null, null);
@@ -3251,7 +3251,7 @@ namespace Punto_de_Venta
             if (chk_F_22.Checked)
             {
                 string f_41;
-                f_41= nud_F_22.Value + "x " + chk_F_22.Text;
+                f_41 = nud_F_22.Value + "x " + chk_F_22.Text;
                 if (txt_F_22.Text == string.Empty)
                 {
                     if (rdb_F_41_1.Checked)
@@ -3266,7 +3266,7 @@ namespace Punto_de_Venta
                         if (chk_F_41_4.Checked)
                             f_41 = f_41 + chk_F_41_4.Text + ", ";
                         if (chk_F_41_5.Checked)
-                            f_41 = f_41 +  chk_F_41_5.Text + ", ";
+                            f_41 = f_41 + chk_F_41_5.Text + ", ";
                         if (chk_F_41_6.Checked)
                             f_41 = f_41 + chk_F_41_6.Text + ", ";
                     }
@@ -3518,12 +3518,12 @@ namespace Punto_de_Venta
             }
             switch (cmb_Mesas.SelectedIndex)
             {
-                
+
                 case 0:
                     Tt[0] = Tt[0] + Total;
                     do
                     {
-                        if(comida.Count() != 0)
+                        if (comida.Count() != 0)
                         {
                             if (comida.ToArray()[0] != "")
                             {
@@ -3534,13 +3534,13 @@ namespace Punto_de_Venta
                             comida.RemoveAt(0);
                         }
                     } while (comida.Count() != 0);
-                    for(int i = 0; i < comanda.ToArray().Length; i++)
+                    for (int i = 0; i < comanda.ToArray().Length; i++)
                         comanda1.Add(comanda[i]);
                     comanda.Clear();
                     Total = 0;
                     break;
                 case 1:
-                    Tt[1] = Tt[1] +Total;
+                    Tt[1] = Tt[1] + Total;
                     do
                     {
                         if (comida.Count() != 0)
@@ -4007,7 +4007,7 @@ namespace Punto_de_Venta
                         this.facturasTableAdapter.UpdateCaja(Convert.ToInt32(cambio), Convert.ToString(DateTime.Now).Substring(0, 10));
                         chk_Pedido.Checked = false;
                         txt_Telefono.Text = string.Empty;
-                        
+
                     }
                     break;
 
@@ -5595,7 +5595,7 @@ namespace Punto_de_Venta
 
         private void nud_E_1_ValueChanged(object sender, EventArgs e)
         {
-                
+
         }
 
         private void chk_E_1_Click(object sender, EventArgs e)
@@ -5608,7 +5608,7 @@ namespace Punto_de_Venta
         {
             if (rdb_F_41_1.Checked)
             {
-                chk_F_41_1.Visible= true;
+                chk_F_41_1.Visible = true;
                 chk_F_41_2.Visible = true;
                 chk_F_41_3.Visible = true;
                 chk_F_41_4.Visible = true;
@@ -5617,13 +5617,13 @@ namespace Punto_de_Venta
             }
             else
             {
-                chk_F_41_1.Visible=false;
+                chk_F_41_1.Visible = false;
                 chk_F_41_2.Visible = false;
                 chk_F_41_3.Visible = false;
                 chk_F_41_4.Visible = false;
                 chk_F_41_5.Visible = false;
                 chk_F_41_6.Visible = false;
-                chk_F_41_1.Checked=false;
+                chk_F_41_1.Checked = false;
                 chk_F_41_2.Checked = false;
                 chk_F_41_3.Checked = false;
                 chk_F_41_4.Checked = false;
@@ -5660,7 +5660,7 @@ namespace Punto_de_Venta
             }
         }
 
-        
+
         private void nud_P_45_ValueChanged(object sender, EventArgs e)
         {
 
@@ -6314,7 +6314,7 @@ namespace Punto_de_Venta
 
         private void lsb_Cuenta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void lsb_Cuenta_DoubleClick(object sender, EventArgs e)
@@ -6337,7 +6337,7 @@ namespace Punto_de_Venta
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
             n = lsb_Cuenta.SelectedItem.ToString();
-            
+
             switch (cmb_Mesas.SelectedIndex)
             {
                 case 0:
@@ -6352,7 +6352,7 @@ namespace Punto_de_Venta
                             lbl_Total.Text = string.Empty;
                         }
                     }
-                    MessageBox.Show(n+" Fue eliminado de la cuenta de "+cmb_Mesas.Text,"Eliminar Producto");
+                    MessageBox.Show(n + " Fue eliminado de la cuenta de " + cmb_Mesas.Text, "Eliminar Producto");
                     for (int i = 0; i <= (mesa1.ToArray()).Length - 1; i++)
                     {
                         if (mesa1[i] == null)
@@ -6882,7 +6882,7 @@ namespace Punto_de_Venta
                     break;
             }
 
-            btn_eliminar.Enabled= false;
+            btn_eliminar.Enabled = false;
         }
 
         private void lsb_Cuenta_QueryContinueDrag(object sender, QueryContinueDragEventArgs e)
@@ -6908,11 +6908,11 @@ namespace Punto_de_Venta
             switch (cmb_Mesas.SelectedIndex)
             {
                 case 0:
-                if (comanda1.Count() != 0)
+                    if (comanda1.Count() != 0)
                     {
                         clsComanda.CreaComanda Comanda = new clsComanda.CreaComanda();
                         Comanda.TextoCentro("---------Mariscos Pepe----------");
-                        Comanda.TextoCentro("Comanda: "+cmb_Mesas.Text);
+                        Comanda.TextoCentro("Comanda: " + cmb_Mesas.Text);
                         Comanda.TextoIzquierda("Fecha:" + DateTime.Now.ToShortDateString() + " Hora:" + DateTime.Now.ToShortTimeString());
                         clsComanda.CreaComanda.LineasGuion();
                         clsComanda.CreaComanda.EncabezadoVenta();
@@ -7260,7 +7260,7 @@ namespace Punto_de_Venta
 
         private void chk_Pedido_CheckedChanged(object sender, EventArgs e)
         {
-            if(chk_Pedido.Checked) 
+            if (chk_Pedido.Checked)
             {
                 txt_Telefono.Visible = true;
                 btn_Buscar.Visible = true;
@@ -7298,37 +7298,37 @@ namespace Punto_de_Venta
 
         }
 
-        
+
 
         private void lbl_Martes_Click(object sender, EventArgs e)
         {
 
         }
 
-        
+
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
-        
+
 
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
-            OleDbCommand comand = new OleDbCommand("Select * FROM Envios WHERE Telefono = '"+txt_Telefono.Text+"'", conexion);
+            OleDbCommand comand = new OleDbCommand("Select * FROM Envios WHERE Telefono = '" + txt_Telefono.Text + "'", conexion);
             OleDbDataReader leedb;
             leedb = comand.ExecuteReader();
             bool exist;
             exist = leedb.HasRows;
             if (exist)
             {
-                if(Convert.ToInt32(new OleDbCommand("Select count(*) FROM Envios WHERE Telefono = '" + txt_Telefono.Text + "'", conexion).ExecuteScalar()) >=  2)
+                if (Convert.ToInt32(new OleDbCommand("Select count(*) FROM Envios WHERE Telefono = '" + txt_Telefono.Text + "'", conexion).ExecuteScalar()) >= 2)
                 {
                     frm_Seleccion_envios se = new frm_Seleccion_envios();
-                    se.lbl_Telefono.Text = se.lbl_Telefono.Text + "\n" +txt_Telefono.Text;
+                    se.lbl_Telefono.Text = se.lbl_Telefono.Text + "\n" + txt_Telefono.Text;
                     se.Show();
-                    
+
                 }
                 else
                 {
@@ -7349,8 +7349,8 @@ namespace Punto_de_Venta
                 frm_Registro_Envios re = new frm_Registro_Envios();
                 re.txt_Telefono.Text = txt_Telefono.Text;
                 re.Show();
-                
-                
+
+
             }
             txt_Telefono.Text = string.Empty;
         }
@@ -7395,8 +7395,8 @@ namespace Punto_de_Venta
 
         private void tbp_Entradas_Click(object sender, EventArgs e)
         {
-            
-            
+
+
         }
 
         private void tbp_Entradas_Scroll(object sender, ScrollEventArgs e)
@@ -7411,7 +7411,7 @@ namespace Punto_de_Venta
 
         private void tbc_punto_venta_Selected(object sender, TabControlEventArgs e)
         {
-            
+
         }
 
         private void tbc_punto_venta_Selecting(object sender, TabControlCancelEventArgs e)

@@ -13,53 +13,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static ListasComandasMesas;
 
 namespace Punto_de_Venta
 {
     public partial class frm_Punto_Venta : Form
     {
         List<string> comanda = new List<string>();
-        List<string> comanda1 = new List<string>();
-        List<string> comanda2 = new List<string>();
-        List<string> comanda3 = new List<string>();
-        List<string> comanda4 = new List<string>();
-        List<string> comanda5 = new List<string>();
-        List<string> comanda6 = new List<string>();
-        List<string> comanda7 = new List<string>();
-        List<string> comanda8 = new List<string>();
-        List<string> comanda9 = new List<string>();
-        List<string> comanda10 = new List<string>();
-        List<string> comanda11 = new List<string>();
-        List<string> comanda12 = new List<string>();
-        List<string> comanda13 = new List<string>();
-        List<string> comanda14 = new List<string>();
-        List<string> comanda15 = new List<string>();
-        List<string> comanda16 = new List<string>();
-        List<string> comanda17 = new List<string>();
-        List<string> comanda18 = new List<string>();
-        List<string> comanda19 = new List<string>();
-        List<string> comanda20 = new List<string>();
-        List<string> mesa1 = new List<string>();
-        List<string> mesa2 = new List<string>();
-        List<string> mesa3 = new List<string>();
-        List<string> mesa4 = new List<string>();
-        List<string> mesa5 = new List<string>();
-        List<string> mesa6 = new List<string>();
-        List<string> mesa7 = new List<string>();
-        List<string> mesa8 = new List<string>();
-        List<string> mesa9 = new List<string>();
-        List<string> mesa10 = new List<string>();
-        List<string> mesa11 = new List<string>();
-        List<string> mesa12 = new List<string>();
-        List<string> mesa13 = new List<string>();
-        List<string> mesa14 = new List<string>();
-        List<string> mesa15 = new List<string>();
-        List<string> mesa16 = new List<string>();
-        List<string> mesa17 = new List<string>();
-        List<string> mesa18 = new List<string>();
-        List<string> mesa19 = new List<string>();
-        List<string> mesa20 = new List<string>();
         List<string> comida = new List<string>();
+
+
         public static class ClaseCompartida
         {
             public static string Telefono;
@@ -94,8 +57,8 @@ namespace Punto_de_Venta
 
         private void btn_atras_Click(object sender, EventArgs e)
         {
-            if (mesa1.Count() != 0 || mesa2.Count() != 0 || mesa3.Count() != 0 || mesa4.Count() != 0 || mesa5.Count() != 0 || mesa6.Count() != 0 || mesa7.Count() != 0 || mesa8.Count() != 0 || mesa9.Count() != 0 || mesa10.Count() != 0 ||
-                mesa11.Count() != 0 || mesa12.Count() != 0 || mesa13.Count() != 0 || mesa14.Count() != 0 || mesa15.Count() != 0 || mesa16.Count() != 0 || mesa17.Count() != 0 || mesa18.Count() != 0 || mesa19.Count() != 0 || mesa20.Count() != 0)
+
+            if (TodasLasMesasEstanVacias())
             {
                 MessageBox.Show("Antes de poder Salir no deben quedar Cuentas Pendientes en el Sistema", "Salir del Punto de Venta");
             }
@@ -109,313 +72,29 @@ namespace Punto_de_Venta
                 }
             }
         }
+        private void MostrarCuenta(List<string> mesa, int index)
+        {
+            for (int i = 0; i < mesa.Count; i++)
+            {
+                if (mesa[i] != "")
+                {
+                    lsb_Cuenta.Items.Add(mesa[i]);
+                    lbl_Total.Text = Convert.ToString(Tt[index] + "$");
+                }
+            }
+        }
 
+        //Mostrar contenido de las mesas
         private void cmb_Mesas_SelectedIndexChanged(object sender, EventArgs e)
         {
             lsb_Cuenta.Items.Clear();
             lbl_Total.Text = "";
-            switch (cmb_Mesas.SelectedIndex)
+
+            int selectedIndex = cmb_Mesas.SelectedIndex;
+
+            if (selectedIndex >= 0 && selectedIndex < ListasComandasMesas.Mesas.Count)
             {
-                case 0:
-                    for (int i = 0; i <= (mesa1.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa1[i] == null)
-                            mesa1[i] = "";
-                        else
-                        {
-                            if (mesa1[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa1[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[0] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 1:
-                    for (int i = 0; i <= (mesa2.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa2[i] == null)
-                            mesa2[i] = "";
-                        else
-                        {
-                            if (mesa2[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa2[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[1] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 2:
-                    for (int i = 0; i <= (mesa3.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa3[i] == null)
-                            mesa3[i] = "";
-                        else
-                        {
-                            if (mesa3[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa3[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[2] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 3:
-                    for (int i = 0; i <= (mesa4.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa4[i] == null)
-                            mesa4[i] = "";
-                        else
-                        {
-                            if (mesa4[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa4[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[3] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 4:
-                    for (int i = 0; i <= (mesa5.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa5[i] == null)
-                            mesa5[i] = "";
-                        else
-                        {
-                            if (mesa5[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa5[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[4] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 5:
-                    for (int i = 0; i <= (mesa6.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa6[i] == null)
-                            mesa6[i] = "";
-                        else
-                        {
-                            if (mesa6[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa6[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[5] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 6:
-                    for (int i = 0; i <= (mesa7.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa7[i] == null)
-                            mesa7[i] = "";
-                        else
-                        {
-                            if (mesa7[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa7[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[6] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 7:
-                    for (int i = 0; i <= (mesa8.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa8[i] == null)
-                            mesa8[i] = "";
-                        else
-                        {
-                            if (mesa8[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa8[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[7] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 8:
-                    for (int i = 0; i <= (mesa9.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa9[i] == null)
-                            mesa9[i] = "";
-                        else
-                        {
-                            if (mesa9[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa9[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[8] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 9:
-                    for (int i = 0; i <= (mesa10.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa10[i] == null)
-                            mesa10[i] = "";
-                        else
-                        {
-                            if (mesa10[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa10[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[9] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 10:
-                    for (int i = 0; i <= (mesa11.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa11[i] == null)
-                            mesa11[i] = "";
-                        else
-                        {
-                            if (mesa11[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa11[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[10] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 11:
-                    for (int i = 0; i <= (mesa12.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa12[i] == null)
-                            mesa12[i] = "";
-                        else
-                        {
-                            if (mesa12[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa12[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[11] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 12:
-                    for (int i = 0; i <= (mesa13.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa13[i] == null)
-                            mesa13[i] = "";
-                        else
-                        {
-                            if (mesa13[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa13[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[12] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 13:
-                    for (int i = 0; i <= (mesa14.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa14[i] == null)
-                            mesa14[i] = "";
-                        else
-                        {
-                            if (mesa14[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa14[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[13] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 14:
-                    for (int i = 0; i <= (mesa15.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa15[i] == null)
-                            mesa15[i] = "";
-                        else
-                        {
-                            if (mesa15[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa15[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[14] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 15:
-                    for (int i = 0; i <= (mesa16.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa16[i] == null)
-                            mesa16[i] = "";
-                        else
-                        {
-                            if (mesa16[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa16[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[15] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 16:
-                    for (int i = 0; i <= (mesa17.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa17[i] == null)
-                            mesa17[i] = "";
-                        else
-                        {
-                            if (mesa17[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa17[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[16] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 17:
-                    for (int i = 0; i <= (mesa18.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa18[i] == null)
-                            mesa18[i] = "";
-                        else
-                        {
-                            if (mesa18[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa18[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[17] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 18:
-                    for (int i = 0; i <= (mesa19.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa19[i] == null)
-                            mesa19[i] = "";
-                        else
-                        {
-                            if (mesa19[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa19[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[18] + "$");
-                            }
-                        }
-                    }
-                    break;
-                case 19:
-                    for (int i = 0; i <= (mesa20.ToArray()).Length - 1; i++)
-                    {
-                        if (mesa20[i] == null)
-                            mesa20[i] = "";
-                        else
-                        {
-                            if (mesa20[i] != "")
-                            {
-                                lsb_Cuenta.Items.Add(mesa20[i]);
-                                lbl_Total.Text = Convert.ToString(Tt[19] + "$");
-                            }
-                        }
-                    }
-                    break;
+                MostrarCuenta(ListasComandasMesas.Mesas[selectedIndex], selectedIndex);
             }
         }
 
@@ -3197,39 +2876,39 @@ namespace Punto_de_Venta
             ManejarCheckBox(txt_E_11, chk_E_11, nud_E_11, 11, null, null);
             ManejarCheckBox(txt_E_12, chk_E_12, nud_E_12, 12, null, ListaDeRadioButtons[0]);
             ManejarCheckBox(txt_E_13, chk_E_13, nud_E_12, 13, null, ListaDeRadioButtons[1]);
-            ManejarCheckBox(txt_E_14, chk_E_14, nud_E_14, 16, null, null);
-            ManejarCheckBox(txt_E_15, chk_E_15, nud_E_15, 17, null, null);
-            ManejarCheckBox(txt_E_16, chk_E_16, nud_E_16, 18, null, null);
-            ManejarCheckBox(txt_E_17, chk_E_17, nud_E_17, 19, null, null);
-            ManejarCheckBox(txt_E_18, chk_E_18, nud_E_18, 14, null, null);
-            ManejarCheckBox(txt_E_19, chk_E_19, nud_E_19, 15, null, null);
-            ManejarCheckBox(txt_E_20, chk_E_20, nud_E_20, 91, null, null);
-            ManejarCheckBox(txt_E_21, chk_E_21, nud_E_21, 92, null, null);
-            ManejarCheckBox(txt_E_22, chk_E_22, nud_E_22, 93, null, null);
-            ManejarCheckBox(txt_E_23, chk_E_23, nud_E_23, 94, null, null);
-            ManejarCheckBox(txt_E_24, chk_E_24, nud_E_24, 95, null, null);
-            ManejarCheckBox(txt_E_25, chk_E_25, nud_E_25, 96, null, null);
-            ManejarCheckBox(txt_E_26, chk_E_26, nud_E_26, 97, null, null);
-            ManejarCheckBox(txt_E_27, chk_E_27, nud_E_27, 98, null, null);
-            ManejarCheckBox(txt_E_28, chk_E_28, nud_E_28, 99, null, null);
-            ManejarCheckBox(txt_E_29, chk_E_29, nud_E_29, 100, null, null);
+            ManejarCheckBox(txt_E_14, chk_E_14, nud_E_14, 14, null, null);
+            ManejarCheckBox(txt_E_15, chk_E_15, nud_E_15, 15, null, null);
+            ManejarCheckBox(txt_E_16, chk_E_16, nud_E_16, 16, null, null);
+            ManejarCheckBox(txt_E_17, chk_E_17, nud_E_17, 17, null, null);
+            ManejarCheckBox(txt_E_18, chk_E_18, nud_E_18, 18, null, null);
+            ManejarCheckBox(txt_E_19, chk_E_19, nud_E_19, 19, null, null);
+            ManejarCheckBox(txt_E_20, chk_E_20, nud_E_20, 20, null, null);
+            ManejarCheckBox(txt_E_21, chk_E_21, nud_E_21, 21, null, null);
+            ManejarCheckBox(txt_E_22, chk_E_22, nud_E_22, 22, null, null);
+            ManejarCheckBox(txt_E_23, chk_E_23, nud_E_23, 23, null, null);
+            ManejarCheckBox(txt_E_24, chk_E_24, nud_E_24, 24, null, null);
+            ManejarCheckBox(txt_E_25, chk_E_25, nud_E_25, 25, null, null);
+            ManejarCheckBox(txt_E_26, chk_E_26, nud_E_26, 26, null, null);
+            ManejarCheckBox(txt_E_27, chk_E_27, nud_E_27, 27, null, null);
+            ManejarCheckBox(txt_E_28, chk_E_28, nud_E_28, 28, null, null);
+            ManejarCheckBox(txt_E_29, chk_E_29, nud_E_29, 29, null, null);
 
             //Agregar Fuertes
-            ManejarCheckBox(txt_F_1, chk_F_1, nud_F_1, 20, ListaDeCheckBoxs[0], null);
-            ManejarCheckBox(txt_F_2, chk_F_2, nud_F_2, 21, ListaDeCheckBoxs[1], null);
-            ManejarCheckBox(txt_F_3, chk_F_3, nud_F_3, 22, ListaDeCheckBoxs[2], null);
-            ManejarCheckBox(txt_F_4, chk_F_4, nud_F_4, 23, ListaDeCheckBoxs[3], null);
-            ManejarCheckBox(txt_F_5, chk_F_5, nud_F_5, 24, ListaDeCheckBoxs[4], null);
-            ManejarCheckBox(txt_F_6, chk_F_6, nud_F_6, 25, ListaDeCheckBoxs[5], null);
-            ManejarCheckBox(txt_F_7, chk_F_7, nud_F_7, 26, ListaDeCheckBoxs[6], null);
-            ManejarCheckBox(txt_F_8, chk_F_8, nud_F_8, 27, ListaDeCheckBoxs[7], null);
-            ManejarCheckBox(txt_F_9, chk_F_9, nud_F_9, 28, ListaDeCheckBoxs[8], null);
-            ManejarCheckBox(txt_F_10, chk_F_10, nud_F_10, 29, null, null);
-            ManejarCheckBox(txt_F_11, chk_F_11, nud_F_11, 30, null, null);
-            ManejarCheckBox(txt_F_12, chk_F_12, nud_F_12, 31, null, null);
-            ManejarCheckBox(txt_F_13, chk_F_13, nud_F_13, 32, null, null);
-            ManejarCheckBox(txt_F_14, chk_F_14, nud_F_14, 33, null, null);
-            ManejarCheckBox(txt_F_15, chk_F_15, nud_F_15, 34, null, ListaDeRadioButtons[2]);
+            ManejarCheckBox(txt_F_1, chk_F_1, nud_F_1, 1, ListaDeCheckBoxs[0], null);
+            ManejarCheckBox(txt_F_2, chk_F_2, nud_F_2, 2, ListaDeCheckBoxs[1], null);
+            ManejarCheckBox(txt_F_3, chk_F_3, nud_F_3, 3, ListaDeCheckBoxs[2], null);
+            ManejarCheckBox(txt_F_4, chk_F_4, nud_F_4, 4, ListaDeCheckBoxs[3], null);
+            ManejarCheckBox(txt_F_5, chk_F_5, nud_F_5, 5, ListaDeCheckBoxs[4], null);
+            ManejarCheckBox(txt_F_6, chk_F_6, nud_F_6, 6, ListaDeCheckBoxs[5], null);
+            ManejarCheckBox(txt_F_7, chk_F_7, nud_F_7, 7, ListaDeCheckBoxs[6], null);
+            ManejarCheckBox(txt_F_8, chk_F_8, nud_F_8, 8, ListaDeCheckBoxs[7], null);
+            ManejarCheckBox(txt_F_9, chk_F_9, nud_F_9, 9, ListaDeCheckBoxs[8], null);
+            ManejarCheckBox(txt_F_10, chk_F_10, nud_F_10, 10, null, null);
+            ManejarCheckBox(txt_F_11, chk_F_11, nud_F_11, 11, null, null);
+            ManejarCheckBox(txt_F_12, chk_F_12, nud_F_12, 12, null, null);
+            ManejarCheckBox(txt_F_13, chk_F_13, nud_F_13, 13, null, null);
+            ManejarCheckBox(txt_F_14, chk_F_14, nud_F_14, 14, null, null);
+            ManejarCheckBox(txt_F_15, chk_F_15, nud_F_15, 15, null, ListaDeRadioButtons[2]);
             if (chk_F_16.Checked)
             {
                 decimal precio;
@@ -3238,16 +2917,16 @@ namespace Punto_de_Venta
                     comanda.Add(nud_F_16.Value + "x " + chk_F_16.Text);
                 else
                     comanda.Add(nud_F_16.Value + "x " + chk_F_16.Text + "(" + txt_F_16.Text + ")");
-                OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=35", conexion);
+                OleDbCommand comand = new OleDbCommand("Select Precio FROM Fuertes Where id=16", conexion);
                 comida.Add(nud_F_16.Value + "x " + chk_F_16.Text + ":" + (Convert.ToDecimal(comand.ExecuteScalar()) * precio) * Convert.ToInt32(nud_F_16.Value));
                 Total = Convert.ToDecimal((Convert.ToDecimal(comand.ExecuteScalar()) * precio) * Convert.ToInt32(nud_F_16.Value)) + Total;
                 chk_F_16.Checked = false;
             }
-            ManejarCheckBox(txt_F_17, chk_F_17, nud_F_17, 36, null, null);
-            ManejarCheckBox(txt_F_18, chk_F_18, nud_F_18, 37, ListaDeCheckBoxs[9], null);
-            ManejarCheckBox(txt_F_19, chk_F_19, nud_F_19, 38, null, null);
-            ManejarCheckBox(txt_F_20, chk_F_20, nud_F_20, 39, null, null);
-            ManejarCheckBox(txt_F_21, chk_F_21, nud_F_21, 40, null, null);
+            ManejarCheckBox(txt_F_17, chk_F_17, nud_F_17, 17, null, null);
+            ManejarCheckBox(txt_F_18, chk_F_18, nud_F_18, 18, ListaDeCheckBoxs[9], null);
+            ManejarCheckBox(txt_F_19, chk_F_19, nud_F_19, 19, null, null);
+            ManejarCheckBox(txt_F_20, chk_F_20, nud_F_20, 20, null, null);
+            ManejarCheckBox(txt_F_21, chk_F_21, nud_F_21, 21, null, null);
             if (chk_F_22.Checked)
             {
                 string f_41;
@@ -3326,196 +3005,109 @@ namespace Punto_de_Venta
                     f_41 = f_41 + txt_F_22.Text + ")";
                     comanda.Add(f_41);
                 }
-                OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=41", conexion);
+                OleDbCommand comand = new OleDbCommand("Select Precio FROM Fuertes Where id=22", conexion);
                 comida.Add(nud_F_22.Value + "x " + chk_F_22.Text + ":" + Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_F_22.Value));
                 Total = (Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_F_22.Value)) + Total;
                 chk_F_22.Checked = false;
             }
-            ManejarCheckBox(txt_F_23, chk_F_23, nud_F_23, 82, null, null);
-            ManejarCheckBox(txt_F_24, chk_F_24, nud_F_24, 101, null, null);
-            ManejarCheckBox(txt_F_25, chk_F_25, nud_F_25, 102, null, null);
-            ManejarCheckBox(txt_F_26, chk_F_26, nud_F_26, 103, null, null);
-            ManejarCheckBox(txt_F_27, chk_F_27, nud_F_27, 104, null, null);
-            ManejarCheckBox(txt_F_28, chk_F_28, nud_F_28, 105, null, null);
-            ManejarCheckBox(txt_F_29, chk_F_29, nud_F_29, 106, null, null);
-            ManejarCheckBox(txt_F_30, chk_F_30, nud_F_30, 107, null, null);
-            ManejarCheckBox(txt_F_31, chk_F_31, nud_F_31, 108, null, null);
-            ManejarCheckBox(txt_F_32, chk_F_32, nud_F_32, 109, null, null);
-            ManejarCheckBox(txt_F_33, chk_F_33, nud_F_33, 110, null, null);
+            ManejarCheckBox(txt_F_23, chk_F_23, nud_F_23, 23, null, null);
+            ManejarCheckBox(txt_F_24, chk_F_24, nud_F_24, 24, null, null);
+            ManejarCheckBox(txt_F_25, chk_F_25, nud_F_25, 25, null, null);
+            ManejarCheckBox(txt_F_26, chk_F_26, nud_F_26, 26, null, null);
+            ManejarCheckBox(txt_F_27, chk_F_27, nud_F_27, 27, null, null);
+            ManejarCheckBox(txt_F_28, chk_F_28, nud_F_28, 28, null, null);
+            ManejarCheckBox(txt_F_29, chk_F_29, nud_F_29, 29, null, null);
+            ManejarCheckBox(txt_F_30, chk_F_30, nud_F_30, 30, null, null);
+            ManejarCheckBox(txt_F_31, chk_F_31, nud_F_31, 31, null, null);
+            ManejarCheckBox(txt_F_32, chk_F_32, nud_F_32, 32, null, null);
+            ManejarCheckBox(txt_F_33, chk_F_33, nud_F_33, 33, null, null);
 
             //Agregar Menu Infantil
-            ManejarCheckBox(txt_I_1, chk_I_1, nud_I_1, 42, null, null);
-            ManejarCheckBox(txt_I_2, chk_I_2, nud_I_2, 43, null, null);
-            ManejarCheckBox(txt_I_3, chk_I_3, nud_I_3, 44, null, ListaDeRadioButtons[3]);
+            ManejarCheckBox(txt_I_1, chk_I_1, nud_I_1, 1, null, null);
+            ManejarCheckBox(txt_I_2, chk_I_2, nud_I_2, 2, null, null);
+            ManejarCheckBox(txt_I_3, chk_I_3, nud_I_3, 3, null, ListaDeRadioButtons[3]);
 
             //Agregar Postres
-            ManejarCheckBox(txt_P_1, chk_P_1, nud_P_1, 45, null, null);
-            ManejarCheckBox(txt_P_2, chk_P_2, nud_P_2, 46, null, null);
-            ManejarCheckBox(txt_P_3, chk_P_3, nud_P_3, 47, null, null);
-            ManejarCheckBox(txt_P_4, chk_P_4, nud_P_4, 48, null, null);
-            ManejarCheckBox(txt_P_5, chk_P_5, nud_P_5, 49, null, null);
+            ManejarCheckBox(txt_P_1, chk_P_1, nud_P_1, 1, null, null);
+            ManejarCheckBox(txt_P_2, chk_P_2, nud_P_2, 2, null, null);
+            ManejarCheckBox(txt_P_3, chk_P_3, nud_P_3, 3, null, null);
+            ManejarCheckBox(txt_P_4, chk_P_4, nud_P_4, 4, null, null);
+            ManejarCheckBox(txt_P_5, chk_P_5, nud_P_5, 5, null, null);
 
 
             //Agregar Bebidas
-            ManejarCheckBox(txt_B_1, chk_B_1, nud_B_1, 50, null, null);
-            ManejarCheckBox(txt_B_2, chk_B_2, nud_B_2, 51, null, null);
-            ManejarCheckBox(txt_B_3, chk_B_3, nud_B_3, 52, null, null);
-            ManejarCheckBox(txt_B_4, chk_B_4, nud_B_4, 53, null, null);
-            ManejarCheckBox(txt_B_5, chk_B_5, nud_B_5, 54, null, null);
-            ManejarCheckBox(txt_B_6, chk_B_6, nud_B_6, 55, null, null);
-            ManejarCheckBox(txt_B_7, chk_B_7, nud_B_7, 56, null, null);
-            ManejarCheckBox(txt_B_8, chk_B_8, nud_B_8, 57, null, null);
-            ManejarCheckBox(txt_B_9, chk_B_9, nud_B_9, 58, null, null);
-            ManejarCheckBox(txt_B_10, chk_B_10, nud_B_10, 59, null, null);
-            ManejarCheckBox(txt_B_11, chk_B_11, nud_B_11, 60, null, null);
-            ManejarCheckBox(txt_B_12, chk_B_12, nud_B_12, 61, null, null);
-            ManejarCheckBox(txt_B_13, chk_B_13, nud_B_13, 62, null, null);
-            ManejarCheckBox(txt_B_14, chk_B_14, nud_B_14, 63, null, null);
-            ManejarCheckBox(txt_B_15, chk_B_15, nud_B_15, 64, null, null);
-            ManejarCheckBox(txt_B_16, chk_B_16, nud_B_16, 65, null, null);
-            ManejarCheckBox(txt_B_17, chk_B_17, nud_B_17, 66, null, null);
-            ManejarCheckBox(txt_B_18, chk_B_18, nud_B_18, 67, null, null);
-            ManejarCheckBox(txt_B_19, chk_B_19, nud_B_19, 68, null, null);
-            ManejarCheckBox(txt_B_20, chk_B_20, nud_B_20, 69, null, null);
-            ManejarCheckBox(txt_B_21, chk_B_21, nud_B_21, 70, null, null);
-            ManejarCheckBox(txt_B_22, chk_B_22, nud_B_22, 71, null, null);
-            ManejarCheckBox(txt_B_23, chk_B_23, nud_B_23, 72, null, null);
-            ManejarCheckBox(txt_B_24, chk_B_24, nud_B_24, 73, null, null);
+            ManejarCheckBox(txt_B_1, chk_B_1, nud_B_1, 1, null, null);
+            ManejarCheckBox(txt_B_2, chk_B_2, nud_B_2, 2, null, null);
+            ManejarCheckBox(txt_B_3, chk_B_3, nud_B_3, 3, null, null);
+            ManejarCheckBox(txt_B_4, chk_B_4, nud_B_4, 4, null, null);
+            ManejarCheckBox(txt_B_5, chk_B_5, nud_B_5, 5, null, null);
+            ManejarCheckBox(txt_B_6, chk_B_6, nud_B_6, 6, null, null);
+            ManejarCheckBox(txt_B_7, chk_B_7, nud_B_7, 7, null, null);
+            ManejarCheckBox(txt_B_8, chk_B_8, nud_B_8, 8, null, null);
+            ManejarCheckBox(txt_B_9, chk_B_9, nud_B_9, 9, null, null);
+            ManejarCheckBox(txt_B_10, chk_B_10, nud_B_10, 10, null, null);
+            ManejarCheckBox(txt_B_11, chk_B_11, nud_B_11, 11, null, null);
+            ManejarCheckBox(txt_B_12, chk_B_12, nud_B_12, 12, null, null);
+            ManejarCheckBox(txt_B_13, chk_B_13, nud_B_13, 13, null, null);
+            ManejarCheckBox(txt_B_14, chk_B_14, nud_B_14, 14, null, null);
+            ManejarCheckBox(txt_B_15, chk_B_15, nud_B_15, 15, null, null);
+            ManejarCheckBox(txt_B_16, chk_B_16, nud_B_16, 16, null, null);
+            ManejarCheckBox(txt_B_17, chk_B_17, nud_B_17, 17, null, null);
+            ManejarCheckBox(txt_B_18, chk_B_18, nud_B_18, 18, null, null);
+            ManejarCheckBox(txt_B_19, chk_B_19, nud_B_19, 19, null, null);
+            ManejarCheckBox(txt_B_20, chk_B_20, nud_B_20, 20, null, null);
+            ManejarCheckBox(txt_B_21, chk_B_21, nud_B_21, 21, null, null);
+            ManejarCheckBox(txt_B_22, chk_B_22, nud_B_22, 22, null, null);
+            ManejarCheckBox(txt_B_23, chk_B_23, nud_B_23, 23, null, null);
+            ManejarCheckBox(txt_B_24, chk_B_24, nud_B_24, 24, null, null);
 
             //Agregar Paquetes
 
-            ManejarCheckBox(txt_C_1, chk_C_1, nud_C_1, 64, null, null);
-            ManejarCheckBox(txt_C_2, chk_C_2, nud_C_2, 65, null, null);
-            ManejarCheckBox(txt_C_3, chk_C_3, nud_C_3, 66, null, null);
-            ManejarCheckBox(txt_C_4, chk_C_4, nud_C_4, 66, null, null);
-            ManejarCheckBox(txt_C_5, chk_C_5, nud_C_5, 67, null, null);
-            ManejarCheckBox(txt_C_6, chk_C_6, nud_C_6, 68, null, null);
-            ManejarCheckBox(txt_C_7, chk_C_7, nud_C_7, 68, null, null);
-            ManejarCheckBox(txt_C_8, chk_C_8, nud_C_8, 121, null, null);
-            ManejarCheckBox(txt_C_9, chk_C_9, nud_C_9, 122, null, null);
+            ManejarCheckBox(txt_C_1, chk_C_1, nud_C_1, 1, null, null);
+            ManejarCheckBox(txt_C_2, chk_C_2, nud_C_2, 2, null, null);
+            ManejarCheckBox(txt_C_3, chk_C_3, nud_C_3, 3, null, null);
+            ManejarCheckBox(txt_C_4, chk_C_4, nud_C_4, 4, null, null);
+            ManejarCheckBox(txt_C_5, chk_C_5, nud_C_5, 5, null, null);
+            ManejarCheckBox(txt_C_6, chk_C_6, nud_C_6, 6, null, null);
+            ManejarCheckBox(txt_C_7, chk_C_7, nud_C_7, 7, null, null);
+            ManejarCheckBox(txt_C_8, chk_C_8, nud_C_8, 8, null, null);
+            ManejarCheckBox(txt_C_9, chk_C_9, nud_C_9, 9, null, null);
             //Agregar Licores
-            ManejarCheckBox(txt_L_1, chk_L_1, nud_L_1, 69, null, null);
-            ManejarCheckBox(txt_L_2, chk_L_2, nud_L_2, 70, null, null);
-            ManejarCheckBox(txt_L_3, chk_L_3, nud_L_3, 70, null, null);
-            ManejarCheckBox(txt_L_4, chk_L_4, nud_L_4, 70, null, null);
-            ManejarCheckBox(txt_L_5, chk_L_5, nud_L_5, 70, null, null);
-            ManejarCheckBox(txt_L_6, chk_L_6, nud_L_6, 70, null, null);
-            ManejarCheckBox(txt_L_7, chk_L_7, nud_L_7, 70, null, null);
-            ManejarCheckBox(txt_L_8, chk_L_8, nud_L_8, 70, null, null);
-            ManejarCheckBox(txt_L_9, chk_L_9, nud_L_9, 70, null, null);
-            ManejarCheckBox(txt_L_10, chk_L_10, nud_L_10, 70, null, null);
-            ManejarCheckBox(txt_L_11, chk_L_11, nud_L_11, 80, null, null);
-            ManejarCheckBox(txt_L_12, chk_L_12, nud_L_12, 81, null, null);
-            ManejarCheckBox(txt_L_13, chk_L_13, nud_L_13, 81, null, null);
-            ManejarCheckBox(txt_L_14, chk_L_14, nud_L_14, 81, null, null);
-            ManejarCheckBox(txt_L_15, chk_L_15, nud_L_15, 81, null, null);
-            ManejarCheckBox(txt_L_16, chk_L_16, nud_L_16, 81, null, null);
-            ManejarCheckBox(txt_L_17, chk_L_17, nud_L_17, 81, null, null);
-            ManejarCheckBox(txt_L_18, chk_L_18, nud_L_18, 81, null, null);
-            ManejarCheckBox(txt_L_19, chk_L_19, nud_L_19, 81, null, null);
-            ManejarCheckBox(txt_L_20, chk_L_20, nud_L_20, 81, null, null);
-            ManejarCheckBox(txt_L_21, chk_L_21, nud_L_21, 81, null, null);
-            ManejarCheckBox(txt_L_22, chk_L_22, nud_L_22, 81, null, null);
-            //Agregar no se que mierda
-            if (chk_O_1.Checked)
-            {
-                if (txt_O_1.Text == string.Empty)
-                    comanda.Add(nud_O_1.Value + "x " + chk_O_1.Text);
-                else
-                    comanda.Add(nud_O_1.Value + "x " + chk_O_1.Text + "(" + txt_O_1.Text + ")");
-                OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=83", conexion);
-                comida.Add(nud_O_1.Value + "x " + chk_O_1.Text + ":" + Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_1.Value));
-                Total = (Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_1.Value)) + Total;
-                chk_O_1.Checked = false;
-            }
-            if (chk_O_2.Checked)
-            {
-                if (txt_O_2.Text == string.Empty)
-                    comanda.Add(nud_O_2.Value + "x " + chk_O_2.Text);
-                else
-                    comanda.Add(nud_O_2.Value + "x " + chk_O_2.Text + "(" + txt_O_2.Text + ")");
-                OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=84", conexion);
-                comida.Add(nud_O_2.Value + "x " + chk_O_2.Text + ":" + Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_2.Value));
-                Total = (Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_2.Value)) + Total;
-                chk_O_2.Checked = false;
-            }
-            if (chk_O_3.Checked)
-            {
-                if (txt_O_3.Text == string.Empty)
-                    comanda.Add(nud_O_3.Value + "x " + chk_O_3.Text);
-                else
-                    comanda.Add(nud_O_3.Value + "x " + chk_O_3.Text + "(" + txt_O_3.Text + ")");
-                OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=85", conexion);
-                comida.Add(nud_O_3.Value + "x " + chk_O_3.Text + ":" + Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_3.Value));
-                Total = (Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_3.Value)) + Total;
-                chk_O_3.Checked = false;
-            }
-            if (chk_O_4.Checked)
-            {
-                if (txt_O_4.Text == string.Empty)
-                    comanda.Add(nud_O_4.Value + "x " + chk_O_4.Text);
-                else
-                    comanda.Add(nud_O_4.Value + "x " + chk_O_4.Text + "(" + txt_O_4.Text + ")");
-                OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=86", conexion);
-                comida.Add(nud_O_4.Value + "x " + chk_O_4.Text + ":" + Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_4.Value));
-                Total = (Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_4.Value)) + Total;
-                chk_O_4.Checked = false;
-            }
-            if (chk_O_5.Checked)
-            {
-                if (txt_O_5.Text == string.Empty)
-                    comanda.Add(nud_O_5.Value + "x " + chk_O_5.Text);
-                else
-                    comanda.Add(nud_O_5.Value + "x " + chk_O_5.Text + "(" + txt_O_5.Text + ")");
-                OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=87", conexion);
-                comida.Add(nud_O_5.Value + "x " + chk_O_5.Text + ":" + Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_5.Value));
-                Total = (Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_5.Value)) + Total;
-                chk_O_5.Checked = false;
-            }
-            if (chk_O_6.Checked)
-            {
-                if (txt_O_6.Text == string.Empty)
-                    comanda.Add(nud_O_6.Value + "x " + chk_O_6.Text);
-                else
-                    comanda.Add(nud_O_6.Value + "x " + chk_O_6.Text + "(" + txt_O_6.Text + ")");
-                OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=84", conexion);
-                comida.Add(nud_O_6.Value + "x " + chk_O_6.Text + ":" + Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_6.Value));
-                Total = (Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_6.Value)) + Total;
-                chk_O_6.Checked = false;
-            }
-            if (chk_O_7.Checked)
-            {
-                if (txt_O_7.Text == string.Empty)
-                    comanda.Add(nud_O_7.Value + "x " + chk_O_7.Text);
-                else
-                    comanda.Add(nud_O_7.Value + "x " + chk_O_7.Text + "(" + txt_O_7.Text + ")");
-                OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=85", conexion);
-                comida.Add(nud_O_7.Value + "x " + chk_O_7.Text + ":" + Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_7.Value));
-                Total = (Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_7.Value)) + Total;
-                chk_O_7.Checked = false;
-            }
-            if (chk_O_8.Checked)
-            {
-                if (txt_O_8.Text == string.Empty)
-                    comanda.Add(nud_O_8.Value + "x " + chk_O_8.Text);
-                else
-                    comanda.Add(nud_O_8.Value + "x " + chk_O_8.Text + "(" + txt_O_8.Text + ")");
-                OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=90", conexion);
-                comida.Add(nud_O_8.Value + "x " + chk_O_8.Text + ":" + Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_8.Value));
-                Total = (Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_8.Value)) + Total;
-                chk_O_8.Checked = false;
-            }
-            if (chk_O_9.Checked)
-            {
-                if (txt_O_9.Text == string.Empty)
-                    comanda.Add(nud_O_9.Value + "x " + chk_O_9.Text);
-                else
-                    comanda.Add(nud_O_9.Value + "x " + chk_O_9.Text + "(" + txt_O_9.Text + ")");
-                OleDbCommand comand = new OleDbCommand("Select Precio FROM Productos Where id=89", conexion);
-                comida.Add(nud_O_9.Value + "x " + chk_O_9.Text + ":" + Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_9.Value));
-                Total = (Convert.ToInt32(comand.ExecuteScalar()) * Convert.ToInt32(nud_O_9.Value)) + Total;
-                chk_O_9.Checked = false;
-            }
+            ManejarCheckBox(txt_L_1, chk_L_1, nud_L_1, 1, null, null);
+            ManejarCheckBox(txt_L_2, chk_L_2, nud_L_2, 2, null, null);
+            ManejarCheckBox(txt_L_3, chk_L_3, nud_L_3, 3, null, null);
+            ManejarCheckBox(txt_L_4, chk_L_4, nud_L_4, 4, null, null);
+            ManejarCheckBox(txt_L_5, chk_L_5, nud_L_5, 5, null, null);
+            ManejarCheckBox(txt_L_6, chk_L_6, nud_L_6, 6, null, null);
+            ManejarCheckBox(txt_L_7, chk_L_7, nud_L_7, 7, null, null);
+            ManejarCheckBox(txt_L_8, chk_L_8, nud_L_8, 8, null, null);
+            ManejarCheckBox(txt_L_9, chk_L_9, nud_L_9, 9, null, null);
+            ManejarCheckBox(txt_L_10, chk_L_10, nud_L_10, 10, null, null);
+            ManejarCheckBox(txt_L_11, chk_L_11, nud_L_11, 11, null, null);
+            ManejarCheckBox(txt_L_12, chk_L_12, nud_L_12, 12, null, null);
+            ManejarCheckBox(txt_L_13, chk_L_13, nud_L_13, 13, null, null);
+            ManejarCheckBox(txt_L_14, chk_L_14, nud_L_14, 14, null, null);
+            ManejarCheckBox(txt_L_15, chk_L_15, nud_L_15, 15, null, null);
+            ManejarCheckBox(txt_L_16, chk_L_16, nud_L_16, 16, null, null);
+            ManejarCheckBox(txt_L_17, chk_L_17, nud_L_17, 17, null, null);
+            ManejarCheckBox(txt_L_18, chk_L_18, nud_L_18, 18, null, null);
+            ManejarCheckBox(txt_L_19, chk_L_19, nud_L_19, 19, null, null);
+            ManejarCheckBox(txt_L_20, chk_L_20, nud_L_20, 20, null, null);
+            ManejarCheckBox(txt_L_21, chk_L_21, nud_L_21, 21, null, null);
+            ManejarCheckBox(txt_L_22, chk_L_22, nud_L_22, 22, null, null);
+
+            //Agregar Promociones
+            ManejarCheckBox(txt_O_1, chk_O_1, nud_O_1, 1, null, null);
+            ManejarCheckBox(txt_O_2, chk_O_2, nud_O_2, 2, null, null);
+            ManejarCheckBox(txt_O_3, chk_O_3, nud_O_3, 3, null, null);
+            ManejarCheckBox(txt_O_4, chk_O_4, nud_O_4, 4, null, null);
+            ManejarCheckBox(txt_O_5, chk_O_5, nud_O_5, 5, null, null);
+            ManejarCheckBox(txt_O_6, chk_O_6, nud_O_6, 6, null, null);
+            ManejarCheckBox(txt_O_7, chk_O_7, nud_O_7, 7, null, null);
+            ManejarCheckBox(txt_O_8, chk_O_8, nud_O_8, 8, null, null);
+            ManejarCheckBox(txt_O_9, chk_O_9, nud_O_9, 9, null, null);
+
+            //Agregar a la lista de la mesa
             switch (cmb_Mesas.SelectedIndex)
             {
 

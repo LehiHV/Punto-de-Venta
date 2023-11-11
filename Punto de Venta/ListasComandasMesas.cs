@@ -14,7 +14,7 @@ public static class ListasComandasMesas
         Comandas = new List<List<string>>();
         Mesas = new List<List<string>>();
 
-        for (int i = 0; i < 21; i++)
+        for (int i = 0; i < 20; i++)
         {
             Comandas.Add(new List<string>());
         }
@@ -23,5 +23,11 @@ public static class ListasComandasMesas
         {
             Mesas.Add(new List<string>());
         }
+
+    }
+    public static bool TodasLasMesasEstanVacias()
+    {
+        // Verifica si TODAS las listas dentro de Mesas están vacías
+        return Mesas.All(mesa => mesa.Count == 0);
     }
 }
